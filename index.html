@@ -2,12 +2,12 @@
 <html>
 
 <head>
-    <title>Download LCARS Website Template Files</title>
+    <title>NCC-73191 USS Toronto</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="format-detection" content="telephone=no">
     <meta name="format-detection" content="date=no">
     <link rel="stylesheet" type="text/css" href="css/classic-26101.css">
-    <link rel="stylesheet" type="text/css" href="css/TNGSlider.css">
+    <link rel="stylesheet" type="text/css" href="TNGSlider/TNGSlider.css">
     <link rel="stylesheet" type="text/css"  href="css/site.css"/>
     <link rel="icon" type="image/png" href="https://d700mbxo45lbr.cloudfront.net/lcars/thelcarsicon.png">
 </head>
@@ -17,7 +17,6 @@
         <div class="wrap">
             <div class="left-frame-top">
                 <button onclick="playSoundAndRedirect('audio2', '#')" class="panel-1"><span class="hop">The</span>LCARS<span class="hop">.com</span></button>
-                <!--<button onclick="playSoundAndRedirect('audio2', '#')" class="panel-2">02<span class="hop">-262000</span></button>-->
                 <button href="#" onclick="ToggleSound();" class="panel-2"><img id="SoundIcon" src="img/SoundOnIcon.png" class="SoundIcon"/></button>
             </div>
             <div class="right-frame-top">
@@ -72,28 +71,9 @@
                 </div>
                 <main>
 
-    <!--<div class="TNGSlider">
-        <div class="TNGSlider_Top">
-            <button id="TNGSlider_MomentumSlider_Minus" class="TNGSlider_ButtonPlusMinus TNGSlider_Minus" onclick="UpdateTNGSlider(momentumSlider, 'minus')">-</button>
-            <div class="TNGSlider_InnerBlock">
-                <div id="TNGSlider_MomentumSlider_Unit_1" class="TNGSlider_InnerBlock_Unit"></div>
-                <div id="TNGSlider_MomentumSlider_Unit_2" class="TNGSlider_InnerBlock_Unit"></div>
-                <div id="TNGSlider_MomentumSlider_Unit_3" class="TNGSlider_InnerBlock_Unit"></div>
-                <div id="TNGSlider_MomentumSlider_Unit_4" class="TNGSlider_InnerBlock_Unit"></div>
-                <div id="TNGSlider_MomentumSlider_Unit_5" class="TNGSlider_InnerBlock_Unit"></div>
-                <div id="TNGSlider_MomentumSlider_Unit_6" class="TNGSlider_InnerBlock_Unit"></div>
-            </div>
-            <button id="TNGSlider_MomentumSlider_Plus" class="TNGSlider_ButtonPlusMinus TNGSlider_Plus" onclick="UpdateTNGSlider(momentumSlider, 'plus')">+</button>
-        </div>
-        <div class="TNGSlider_Bottom">
-            MOMENTUM: <span id="TNGSlider_MomentumSlider_Value" class="TNGSlider_Value">0</span>
-        </div>
-    </div>-->
+<div id="TNGSliderMomentum2"></div>
 
-    <div id="TNGSliderMomentum2"></div>
-
-    <div id="TNGSliderWarpDrive"></div>
-
+<div id="TNGSliderWarpDrive"></div>
 
 
 <div id="TNGSlider_template" style="display: none;">
@@ -112,21 +92,6 @@
     {{TNGSliderStyles}}
 </div>
 
-<script>
-    let g_soundOn = true;
-
-    function ToggleSound() {
-        if (g_soundOn === true) {
-            g_soundOn = false;
-            document.getElementById('SoundIcon').src = 'img/SoundOffIcon.png';
-        } else {
-            g_soundOn = true;
-            document.getElementById('SoundIcon').src = 'img/SoundOnIcon.png';
-            playSound('audio2');
-        }
-        console.log("soundOn=" + g_soundOn);
-    }
-</script>
 
 <script>
     let momentumSlider2 = {
@@ -150,147 +115,9 @@
         unitLitColor: "red",
         plusColor: "green",
         minusColor: "orange",
-        displayNameColor: "red",
+        displayNameColor: "purple",
         valueColor: "red"
     };
-
-    function InitialRenderTNGSlider(whichDataName, whichData, whichElement) {
-        let tngSliderTemplate = document.getElementById('TNGSlider_template').innerHTML;
-        let tngSliderUnitsTemplate = '<div id="TNGSlider_{{TNGSliderName}}_Unit_{{TNGSliderUnitId}}" class="TNGSlider_InnerBlock_Unit TNGSlider_InnerBlock_Unit_{{TNGSliderName}}"></div>';
-
-        let thisSlider = tngSliderTemplate.replaceAll('{{TNGSliderName}}', whichData.name);
-        thisSlider = thisSlider.replaceAll('TNGSliderDataName', whichDataName);
-        thisSlider = thisSlider.replaceAll('{{TNGSliderDisplayName}}', whichData.displayName);
-
-        let tngSliderUnits = "";
-        for (let i = 0; i < whichData.max; i++) {
-            let iPlusOne = i + 1;
-
-            let temp = tngSliderUnitsTemplate.replaceAll('{{TNGSliderName}}', whichData.name);
-            temp = temp.replaceAll('{{TNGSliderUnitId}}', iPlusOne);
-
-            tngSliderUnits += temp;
-        }
-
-        thisSlider = thisSlider.replaceAll('{{TNGSliderUnits}}', tngSliderUnits);
-
-        ////////////////////////////////////////////
-        // generate styles for this specific slider
-        let allCSS = '';
-
-        // build width
-        if (Object.hasOwn(whichData, 'width')) {
-            allCSS += '#TNGSlider_' + whichData.name + ' {width: ' + whichData.width + '; max-width: calc(100vw - 110px); } ';
-        }
-
-        // build unitBorderColor
-        if (Object.hasOwn(whichData, 'unitBorderColor')) {
-            allCSS += '.TNGSlider_InnerBlock_Unit_' + whichData.name + ' {border-color: ' + whichData.unitBorderColor + '} ';
-        }
-
-        // build unitLitColor
-        if (Object.hasOwn(whichData, 'unitLitColor')) {
-            allCSS += '.TNGSlider_InnerBlock_Unit_' + whichData.name;
-            allCSS += '.TNGSlider_InnerBlock_Unit_Lit {background-color: ' + whichData.unitLitColor + '} ';
-        }
-
-        // build plusColor
-        if (Object.hasOwn(whichData, 'plusColor')) {
-            allCSS += '#TNGSlider_' + whichData.name + '_Plus {background-color: ' + whichData.plusColor + '} ';
-        }
-
-        // build minusColor
-        if (Object.hasOwn(whichData, 'minusColor')) {
-            allCSS += '#TNGSlider_' + whichData.name + '_Minus {background-color: ' + whichData.minusColor + '} ';
-        }
-
-        // build unitAllBorderColor
-        if (Object.hasOwn(whichData, 'unitBorderColor')) {
-            allCSS += '#TNGSlider_' + whichData.name + '_InnerBlock {border-color: ' + whichData.unitAllBorderColor + '} ';
-        }
-
-        // build displayNameColor
-        if (Object.hasOwn(whichData, 'displayNameColor')) {
-            allCSS += '#TNGSlider_' + whichData.name + '_DisplayName {color: ' + whichData.displayNameColor + '} ';
-        }
-
-        // build valueColor
-        if (Object.hasOwn(whichData, 'valueColor')) {
-            allCSS += '#TNGSlider_' + whichData.name + '_Value {color: ' + whichData.valueColor + '} ';
-        }
-
-
-        //TNGSlider_{{TNGSliderName}}_Value
-
-        if (allCSS.length > 0) {
-            allCSS = '<style>' + allCSS + '</style>';
-        }
-
-        // finish style element
-
-        thisSlider = thisSlider.replaceAll('{{TNGSliderStyles}}', allCSS);
-
-        document.getElementById(whichElement).innerHTML = thisSlider;
-    }
-
-    function UpdateTNGSlider(whichSlider, buttonType) {
-        if(buttonType === 'minus') {
-            if (whichSlider.currentValue > whichSlider.min) {
-                // play good beep 
-                    playSound('audioGoDown');
-                // subtract one 
-                whichSlider.currentValue = whichSlider.currentValue-1; 
-
-                // update dom
-                TNGSliderUpdateUnits(whichSlider);
-            } else {
-                playSound('audioDenied');
-            }
-        }
-
-        if (buttonType === 'plus') {
-            if (whichSlider.currentValue < whichSlider.max) {
-                // play good beep
-                playSound('audioGoUp');
-
-                // subtract one 
-                whichSlider.currentValue = whichSlider.currentValue + 1;
-
-                // update dom
-                TNGSliderUpdateUnits(whichSlider);
-            } else {
-                playSound('audioDenied');
-            }
-        }
-    };
-
-    function TNGSliderUpdateUnits(whichSlider) {
-        document.getElementById('TNGSlider_' + whichSlider.name + '_Value').innerHTML = whichSlider.currentValue;
-        let currentValue = whichSlider.currentValue; 
-
-        // clear all lit
-        for (let i = 0; i < whichSlider.max; i++) {
-            let iPlusOne = i + 1;
-            document.getElementById('TNGSlider_' + whichSlider.name + '_Unit_' + iPlusOne).classList.remove('TNGSlider_InnerBlock_Unit_Lit');
-        }
-
-        for (let i = 0; i < currentValue; i++) {
-            let iPlusOne = i + 1;
-
-            if (iPlusOne <= currentValue) {
-                document.getElementById('TNGSlider_' + whichSlider.name + '_Unit_' + iPlusOne).classList.add('TNGSlider_InnerBlock_Unit_Lit');
-            }
-        }
-
-        // store whichSlider to Local Storage
-        // What should I call it?  How should I store and retrieve the data?
-        //localStorage.setItem("userSession", JSON.stringify(whichSlider));
-    }
-
-    InitialRenderTNGSlider('warpDriveSlider', warpDriveSlider, 'TNGSliderWarpDrive');
-    
-    InitialRenderTNGSlider('momentumSlider2', momentumSlider2, 'TNGSliderMomentum2');
-
 </script>
 
 
@@ -303,12 +130,6 @@
                     <a href="https://www.thelcars.com/site-map.php">Site Map</a>
                 </footer>-->
 
-                <script type="text/javascript" src="js/lcars.js"></script>
-                <script>
-    document.addEventListener('DOMContentLoaded', function() {
-
-    });
-                </script>
                 <div class="headtrim"> </div>
                 <div class="baseboard"> </div>
                 <audio id="audio1" src="sounds/beep1.mp3" preload="auto"></audio>
@@ -316,6 +137,7 @@
                 <audio id="audio3" src="sounds/beep3.mp3" preload="auto"></audio>
                 <audio id="audio4" src="sounds/beep4.mp3" preload="auto"></audio>
 
+                <!-- these sounds below from https://www.trekcore.com/audio/ -->
                 <audio id="audioGoUp" src="sounds/computerbeep_44.mp3" preload="auto"></audio>
                 <audio id="audioGoDown" src="sounds/computerbeep_43.mp3" preload="auto"></audio>
                 <audio id="audioDenied" src="sounds/denybeep4.mp3" preload="auto"></audio>
@@ -323,6 +145,34 @@
             </div>
         </div>
     </section>
-</body>
 
+<script type="text/javascript" src="js/lcars.js"></script>
+
+<script>
+    //////////////////////////////////////////////////////////////////////////////////
+    //
+    // global sound on off stuff for this page
+    //
+    let g_soundOn = true;
+
+    function ToggleSound() {
+        if (g_soundOn === true) {
+            g_soundOn = false;
+            document.getElementById('SoundIcon').src = 'img/SoundOffIcon.png';
+        } else {
+            g_soundOn = true;
+            document.getElementById('SoundIcon').src = 'img/SoundOnIcon.png';
+            playSound('audio2');
+        }
+        console.log("soundOn=" + g_soundOn);
+    }
+    //
+    // end global sound on off stuff
+    //
+    //////////////////////////////////////////////////////////////////////////////////
+</script>
+
+<script src="TNGSlider/TNGSlider.js"></script>
+
+</body>
 </html>
