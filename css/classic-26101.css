@@ -833,7 +833,7 @@ button:active {
 
 nav {
 	display: flex;
-	flex-wrap: wrap;
+
 	align-self: center;	
 	width: calc(var(--nav-width) + var(--nav-width) + 1rem);
 	justify-content: flex-end;
@@ -1259,6 +1259,7 @@ nav button	{
 .panel-2 {
 	flex-grow: 1;
 	display: flex;
+    align-items: center;
 	justify-content: flex-end;
 	margin-top: auto;
 	background-color: var(--panel-2-color);

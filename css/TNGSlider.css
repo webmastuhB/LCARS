@@ -43,6 +43,7 @@
 .TNGSlider {
     justify-content: space-between;
     width: 400px;
+    max-width: calc(100vw - 110px);
     margin-bottom: 1rem;
 }
 

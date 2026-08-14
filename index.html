@@ -17,42 +17,12 @@
         <div class="wrap">
             <div class="left-frame-top">
                 <button onclick="playSoundAndRedirect('audio2', '#')" class="panel-1"><span class="hop">The</span>LCARS<span class="hop">.com</span></button>
-                <button onclick="playSoundAndRedirect('audio2', '#')" class="panel-2">02<span class="hop">-262000</span></button>
+                <!--<button onclick="playSoundAndRedirect('audio2', '#')" class="panel-2">02<span class="hop">-262000</span></button>-->
+                <button href="#" onclick="ToggleSound();" class="panel-2"><img id="SoundIcon" src="img/SoundOnIcon.png" class="SoundIcon"/></button>
             </div>
             <div class="right-frame-top">
-                <!--<div class="banner">NCC-73191<br />USS Toronto</div>
-                <div class="data-cascade-button-group">
-                    <div class="data-cascade-wrapper" id="default">
-
-                    </div>--> <!-- /data-cascade wrapper -->
-                    <!--<nav>
-                        <button onclick="playSoundAndRedirect('audio2', '#')" class="nav-1">01-ship</button>
-                        <button onclick="playSoundAndRedirect('audio2', '#')" class="nav-3">03-crew</button>
-                    </nav>
-                </div>-->
-
-                <style>
-                    .TopMainBlock {
-                        display: flex;
-                        justify-content: space-between;
-                        margin-left: 30px;
-                    }
-
-                    .BlueyColor {
-                        color: var(--nav-1-color);
-                    }
-
-                    .ButterscotchColor {
-                        color: var(--butterscotch);
-                    }
-
-                    .CheyenneStats {
-                        display: flex;
-                        justify-content: space-between;
-                    }
-                </style>
                 <div class="TopMainBlock">
-                    <div style="padding-top: 40px;padding-right: 30px;">
+                    <div id="TopMainBlockLeft" style="padding-top: 40px;padding-right: 30px;">
                         <img src="img/USSTorontoNoNotes.png" />
                         <div class="CheyenneStats">
                             <div>LENGTH: 362 M</div>
@@ -61,8 +31,8 @@
                             <div class="ButterscotchColor">MASS: 1,047,000 M.T.</div>
                         </div>
                     </div>
-                    <div>
-                        <div class="banner">NCC-73191<br /><span class="BlueyColor">USS Toronto</span></div>
+                    <div id="TopMainBlockRight">
+                        <div class="banner "><div class="BlueyColor">NCC-73191</div><div class="ButterscotchColor">&nbsp;&nbsp;USS Toronto</div></div>
                         <nav>
                             <button onclick="playSoundAndRedirect('audio2', '#')" class="nav-1">01-ship</button>
                             <button onclick="playSoundAndRedirect('audio2', '#')" class="nav-3">03-crew</button>
@@ -74,7 +44,7 @@
                     <div class="bar-2"></div>
                     <div class="bar-3"></div>
                     <div class="bar-4"></div>
-                    <div class="bar-5"><a href="#" onclick="ToggleSound();"><img id="SoundIcon" src="img/SoundOnIcon.png" class="SoundIcon"/></a></div>
+                    <div class="bar-5"></div>
                 </div>
             </div>
         </div>
@@ -210,7 +180,7 @@
 
         // build width
         if (Object.hasOwn(whichData, 'width')) {
-            allCSS += '#TNGSlider_' + whichData.name + ' {width: ' + whichData.width + '} ';
+            allCSS += '#TNGSlider_' + whichData.name + ' {width: ' + whichData.width + '; max-width: calc(100vw - 110px); } ';
         }
 
         // build unitBorderColor

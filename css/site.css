@@ -1,5 +1,71 @@
+.banner {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (width <= 1500px) {
+
+}
+
+@media (width <= 1300px) {
+
+}
+
+@media (width <= 950px) {
+    #TopMainBlockLeft {
+        display: none;
+    }
+    .banner {
+        flex-direction: row;
+    }
+
+}
+
+@media (width <= 750px)	{ 
+
+}
+
+@media (width <= 540px) {
+
+}
+
+@media (width <= 450px) {
+
+}
+
+#TopMainBlockRight {
+    display: flex;
+    flex-direction: column;
+    padding-right: 10px;
+    justify-content: flex-end;
+}
+
+#TopMainBlockRight nav {
+    margin-left: auto;
+}
+
 .SoundIcon {
     width: 1rem;
     margin-top: .17rem;
     margin-left: .4rem;
 }
+
+.TopMainBlock {
+    display: flex;
+    justify-content: flex-end;
+    margin-left: 30px;
+}
+
+.BlueyColor {
+    color: var(--nav-1-color);
+}
+
+.ButterscotchColor {
+    color: var(--butterscotch);
+}
+
+.CheyenneStats {
+    display: flex;
+    justify-content: space-between;
+}
+
